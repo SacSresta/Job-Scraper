@@ -9,6 +9,7 @@ import pandas as pd
 import time
 
 jobname = input("Please enter a job title")
+location = input("Please enter a location")
 
 # Set up Chrome options
 chrome_options = Options()
@@ -28,7 +29,7 @@ elem = driver.find_element(By.NAME, "keywords")
 elem.clear()
 elem.send_keys(jobname)
 location = driver.find_element(By.NAME, "where")
-location.send_keys('Queensland')
+location.send_keys(f'{location}')
 elem.send_keys(Keys.RETURN)
 
 # Wait for the page to load
@@ -101,5 +102,5 @@ driver.quit()
 df = pd.DataFrame(job_data)
 
 # Save to CSV
-df.to_csv("job_listings.csv", index=False)
-print("Job data saved to job_listings.csv")
+df.to_csv(f"{jobname}.csv", index=False)
+print(f"Job data saved to {jobname}.csv")
